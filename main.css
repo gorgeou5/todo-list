@@ -1,0 +1,50 @@
+body {
+  margin: 2rem;
+  background: #000;
+}
+
+#head-wrap {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  color: #ffffff;
+}
+#head-wrap h1 {
+  font-size: 2.4rem;
+}
+#head-wrap p {
+  margin-top: 1rem;
+}
+
+main {
+  width: 70%;
+  padding-top: 1.2rem;
+  margin: 0 auto;
+}
+main #content-wrap {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background-color: #ffffff;
+}
+main #content-wrap h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+main #content-wrap .input-wrap {
+  padding: 1rem;
+  margin: 0 auto;
+}
+main #content-wrap .input-wrap #todo-input {
+  width: 40%;
+}
+
+#todo-list {
+  margin: 0 auto;
+  padding: 1rem 10rem;
+  border: 1px solid #000;
+  background-color: gainsboro;
+}
+#todo-list li {
+  text-align: left;
+  margin-top: 0.8rem;
+}
