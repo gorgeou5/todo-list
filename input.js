@@ -50,8 +50,10 @@ function complete(e) {
   const completeTodo = e.target.nextSibling;
   if (e.target.checked) {
     completeTodo.style.color = "#4F647E";
+    completeTodo.style.textDecoration = "line-through";
   } else {
     completeTodo.style.color = "#000000";
+    completeTodo.style.textDecoration = "none";
   }
 }
 
