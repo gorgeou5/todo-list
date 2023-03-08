@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "UhBeeSe_hyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSe_hyun.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "EarlyFontDiary";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EarlyFontDiary.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 html {
   font-size: 62.5%;
 }
@@ -14,6 +26,7 @@ body {
   color: #ffffff;
 }
 #head-wrap h1 {
+  font-family: "UhBeeSe_hyun";
   font-size: 6.4rem;
 }
 #head-wrap p {
@@ -29,10 +42,11 @@ main {
 main #content-wrap {
   text-align: center;
   margin-top: 1rem;
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem;
   background-color: #ffffff;
 }
 main #content-wrap h2 {
+  font-family: "EarlyFontDiary";
   font-size: 2.2rem;
   font-weight: bold;
 }
@@ -58,6 +72,7 @@ main #content-wrap .input-wrap #todo-input {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: "EarlyFontDiary";
   font-size: 1.6rem;
 }
 
