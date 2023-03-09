@@ -1,19 +1,27 @@
+// 각각 dom 조작을 위해 변수에 담음
 const toDo = document.querySelector("#todo-input");
 const addButton = document.querySelector("#submit");
 const toDoList = document.querySelector("#todo-list"); //ol
-// 각각 dom 조작을 위해 변수에 담음
+
+// 로컬 저장소에 저장된 값 가져와서 담음
+const savedTodoList = JSON.parse(localStorage.getItem("saved-items"));
 
 // add todo append todo-box
-function addTodo() {
+function addTodo(storageData) {
+  // storageData는 매개변수
+  let todoContent = toDo.value;
+  if (storageData?.contents) {
+    todoContent = storageData.contents; //재할당이 가능하기 때문에
+  }
+
   const item = document.createElement("li"); // li
-  const newTodo = toDo.value;
   const checkBox = document.createElement("input");
   checkBox.setAttribute("type", "checkbox"); //checkbox 설정
   const removeButton = document.createElement("button"); // 삭제
   const text = document.createElement("span"); // 내용
-  if (newTodo.length > 0) {
+  if (todoContent.length > 0) {
     removeButton.textContent = "X";
-    text.textContent = newTodo;
+    text.textContent = todoContent;
     toDoList.append(item);
     item.append(checkBox);
     item.append(text);
@@ -51,11 +59,9 @@ function deleteItem(e) {
 function complete(e) {
   const completeTodo = e.target.nextSibling;
   if (e.target.checked) {
-    completeTodo.style.color = "#4F647E";
-    completeTodo.style.textDecoration = "line-through";
+    completeTodo.classList.add("complete");
   } else {
-    completeTodo.style.color = "#000000";
-    completeTodo.style.textDecoration = "none";
+    completeTodo.classList.remove("complete");
   }
 }
 
@@ -64,8 +70,7 @@ addButton.addEventListener("click", addTodo);
 toDo.addEventListener("keypress", addTodoByEnter);
 toDoList.addEventListener("change", saveTodo);
 
-// save todolist
-
+// save todolist => localstrage 저장
 function saveTodo() {
   const saveItems = [];
   for (let i = 0; i < toDoList.children.length; i++) {
@@ -76,5 +81,19 @@ function saveTodo() {
     saveItems.push(todoItem);
   }
   // local storage 에 저장시 활용하려면 JSON.stringify 로 저장해야 한다
-  console.log(JSON.stringify(saveItems));
+  localStorage.setItem("saved-items", JSON.stringify(saveItems));
+}
+
+// savedTodoList 값이 있을 때 addTodo 그리고 complete 값을 계속 유지할 수 있도록 => 그리고 saveTodo
+if (savedTodoList) {
+  for (let i = 0; i < savedTodoList.length; i++) {
+    addTodo(savedTodoList[i]);
+    if (savedTodoList[i].complete) {
+      toDoList.children[i]
+        .querySelector("input")
+        .setAttribute("checked", "checked");
+      toDoList.children[i].querySelector("span").classList.add("complete");
+    }
+    saveTodo();
+  }
 }
