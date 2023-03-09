@@ -24,6 +24,7 @@ function addTodo() {
   }
   removeButton.addEventListener("click", deleteItem);
   checkBox.addEventListener("change", complete);
+  saveTodo();
 }
 
 // enter 눌러도 todo 값 추가
@@ -43,6 +44,7 @@ function reset() {
 function deleteItem(e) {
   const removeTodo = e.target.parentElement;
   removeTodo.remove();
+  saveTodo();
 }
 
 //checkBox check
@@ -60,3 +62,19 @@ function complete(e) {
 // 각 버튼마다 이벤트와 함수
 addButton.addEventListener("click", addTodo);
 toDo.addEventListener("keypress", addTodoByEnter);
+toDoList.addEventListener("change", saveTodo);
+
+// save todolist
+
+function saveTodo() {
+  const saveItems = [];
+  for (let i = 0; i < toDoList.children.length; i++) {
+    const todoItem = {
+      contents: toDoList.children[i].querySelector("span").textContent,
+      complete: toDoList.children[i].querySelector("input").checked,
+    };
+    saveItems.push(todoItem);
+  }
+  // local storage 에 저장시 활용하려면 JSON.stringify 로 저장해야 한다
+  console.log(JSON.stringify(saveItems));
+}
