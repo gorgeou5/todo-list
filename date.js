@@ -10,3 +10,25 @@ function day() {
 }
 
 document.querySelector("#date").innerHTML = month + "월 " + date + "일 " + day();
+
+// weatherAPI 써보기
+function weatherSearch(position) {
+  console.log(position);
+  fetch(`https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid=685408f2b602237b7027d90c7f0bfafb`);
+}
+
+function accessToGeo(position) {
+  const positionObj = {
+    latitude: position.coords.latitude,
+    longitude: position.coords.longitude,
+  };
+  console.log(positionObj);
+}
+
+function askForLocation() {
+  navigator.geolocation.getCurrentPosition(accessToGeo, (err) => {
+    console.log(err);
+  });
+}
+
+askForLocation();
